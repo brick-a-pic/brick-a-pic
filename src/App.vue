@@ -1,28 +1,38 @@
 <template>
-  <div id="app">
-    <img alt="Vue logo" src="./assets/logo.png">
-    <HelloWorld msg="Pic a Brick"/>
-  </div>
+  <v-app id="inspire">
+    <v-navigation-drawer
+      v-model="drawer"
+      app
+      clipped
+    >
+      <v-btn color="primary">Open image</v-btn>
+    </v-navigation-drawer>
+
+    <v-app-bar
+      app
+      color="indigo"
+      dark
+      clipped-left
+    >
+      <v-app-bar-nav-icon @click.stop="drawer = !drawer" />
+      <v-toolbar-title>Brick a Pic</v-toolbar-title>
+    </v-app-bar>
+
+    <v-content>
+      <v-container
+        class="fill-height"
+        fluid
+      >
+
+      </v-container>
+    </v-content>
+  </v-app>
 </template>
 
 <script>
-import HelloWorld from './components/HelloWorld.vue';
-
 export default {
-  name: 'app',
-  components: {
-    HelloWorld,
-  },
+  data: () => ({
+    drawer: null,
+  }),
 };
 </script>
-
-<style lang="scss">
-#app {
-  font-family: 'Avenir', Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-  margin-top: 60px;
-}
-</style>

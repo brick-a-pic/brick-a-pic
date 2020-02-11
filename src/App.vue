@@ -1,12 +1,6 @@
 <template>
   <v-app id="inspire">
-    <v-navigation-drawer
-      v-model="drawer"
-      app
-      clipped
-    >
-      <v-btn color="primary">Open image</v-btn>
-    </v-navigation-drawer>
+    <Settings :showDrawer="showDrawer"></Settings>
 
     <v-app-bar
       app
@@ -14,8 +8,13 @@
       dark
       clipped-left
     >
-      <v-app-bar-nav-icon @click.stop="drawer = !drawer" />
+      <v-app-bar-nav-icon @click.stop="showDrawer = !showDrawer" />
       <v-toolbar-title>Brick a Pic</v-toolbar-title>
+
+      <v-spacer></v-spacer>
+
+      <v-btn text href="/">About</v-btn>
+      <v-btn text href="https://github.com/brick-a-pic/brick-a-pic" target="_blank">Source</v-btn>
     </v-app-bar>
 
     <v-content>
@@ -30,9 +29,14 @@
 </template>
 
 <script>
+import Settings from './components/Settings.vue';
+
 export default {
+  components: {
+    Settings,
+  },
   data: () => ({
-    drawer: null,
+    showDrawer: null,
   }),
 };
 </script>

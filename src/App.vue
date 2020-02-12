@@ -1,12 +1,9 @@
 <template>
-  <v-app id="inspire">
-    <Settings :showDrawer="showDrawer"></Settings>
-
+  <v-app>
     <v-app-bar
       app
       color="indigo"
       dark
-      clipped-left
     >
       <v-app-bar-nav-icon @click.stop="showDrawer = !showDrawer" />
       <v-toolbar-title>Brick a Pic</v-toolbar-title>
@@ -18,11 +15,13 @@
     </v-app-bar>
 
     <v-content>
+      <div style="position: absolute; top: 0; bottom: 0; left: 0; right: 0;
+      background-color: #ccc"></div>
       <v-container
         class="fill-height"
         fluid
       >
-
+        <Settings v-if="showDrawer"></Settings>
       </v-container>
     </v-content>
   </v-app>
@@ -36,7 +35,7 @@ export default {
     Settings,
   },
   data: () => ({
-    showDrawer: null,
+    showDrawer: true,
   }),
 };
 </script>

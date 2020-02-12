@@ -15,10 +15,8 @@
     </v-app-bar>
 
     <v-content>
-      <div style="position: absolute; top: 0; bottom: 0; left: 0; right: 0;
-      background-color: #ccc"></div>
+      <Preview></Preview>
       <v-container
-        class="fill-height"
         fluid
       >
         <Settings v-if="showDrawer"></Settings>
@@ -28,10 +26,12 @@
 </template>
 
 <script>
+import Preview from './components/Preview.vue';
 import Settings from './components/Settings.vue';
 
 export default {
   components: {
+    Preview,
     Settings,
   },
   data: () => ({

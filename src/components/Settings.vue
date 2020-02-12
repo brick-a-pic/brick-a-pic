@@ -1,5 +1,5 @@
 <template>
-  <v-card>
+  <v-card max-width="20em">
     <v-card-title>Options</v-card-title>
     <v-card-text>
       <v-btn color="primary">Open image</v-btn>

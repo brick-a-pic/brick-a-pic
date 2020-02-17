@@ -17,8 +17,8 @@ export default {
   },
 
   methods: {
-    onImageOpen(image) {
-      console.log(image);
+    onImageOpen(imageUrl) {
+      console.log(imageUrl);
       // TODO
     },
   },

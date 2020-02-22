@@ -15,11 +15,11 @@
     </v-app-bar>
 
     <v-content>
-      <Preview></Preview>
+      <Preview :imageData="imageData"></Preview>
       <v-container
         fluid
       >
-        <Settings v-if="showDrawer"></Settings>
+        <Settings @imageLoaded="passImage" v-if="showDrawer"></Settings>
       </v-container>
     </v-content>
   </v-app>
@@ -36,6 +36,12 @@ export default {
   },
   data: () => ({
     showDrawer: true,
+    imageData: '',
   }),
+  methods: {
+    passImage(data) {
+      this.imageData = data;
+    },
+  },
 };
 </script>

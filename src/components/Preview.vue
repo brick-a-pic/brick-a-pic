@@ -10,6 +10,13 @@
 <script>
 export default {
   name: 'Preview',
+  props: ['imageData'],
+  watch: {
+    imageData(newData, oldData) {
+      console.info('old: ', oldData);
+      console.info('new: ', newData);
+    },
+  },
 };
 </script>
 

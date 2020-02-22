@@ -18,7 +18,8 @@ export default {
 
   methods: {
     onImageOpen(imageUrl) {
-      console.log(imageUrl);
+      // console.log(imageUrl);
+      this.$emit('imageLoaded', imageUrl);
       // TODO
     },
   },

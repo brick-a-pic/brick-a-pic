@@ -57,14 +57,10 @@ export default {
     onChange(file) {
       if (!file) return;
       // TODO: return if validation fails
-
       const imageUrl = URL.createObjectURL(file);
-      console.log(imageUrl);
-
+      this.$emit('change', imageUrl);
       // Need to wait until after load to do this
       // URL.revokeObjectURL(imageUrl);
-
-      this.$emit('change', imageUrl);
     },
   },
 };

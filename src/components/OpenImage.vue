@@ -59,6 +59,7 @@ export default {
       // TODO: return if validation fails
 
       const imageUrl = URL.createObjectURL(file);
+      console.log(imageUrl);
 
       // Need to wait until after load to do this
       // URL.revokeObjectURL(imageUrl);

@@ -15,7 +15,7 @@
     </v-app-bar>
 
     <v-content>
-      <Preview :imageData="imageData"></Preview>
+      <Preview :imageUrl="imageUrl"></Preview>
       <v-container
         fluid
       >
@@ -36,11 +36,11 @@ export default {
   },
   data: () => ({
     showDrawer: true,
-    imageData: '',
+    imageUrl: '',
   }),
   methods: {
     passImage(data) {
-      this.imageData = data;
+      this.imageUrl = data;
     },
   },
 };

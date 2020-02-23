@@ -14,6 +14,7 @@ export default {
       // console.log(url);
       let pixelData = [];
       const ctx = document.getElementById('processing-canvas').getContext('2d');
+      ctx.clearRect(0, 0, ctx.canvas.width, ctx.canvas.height);
       const img = new Image();
       const self = this;
       img.onload = function sampleImage() {

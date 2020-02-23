@@ -1,7 +1,6 @@
 <template>
   <div class="offscreen">
     <canvas id="processing-canvas"></canvas>
-    <img id="loading-zone" src="">
   </div>
 </template>
 

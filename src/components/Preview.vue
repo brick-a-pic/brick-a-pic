@@ -1,15 +1,16 @@
 <template>
-  <div class="background-wrapper">
+  <div class="background-wrapper" id="background">
     <ImageProcessor @imageSampled='onImageSampled' :imageUrl='imageUrl'></ImageProcessor>
     <svg class="preview-svg" viewBox="0 0 200 100">
-      <rect x="0" y="0" width="200" height="100" stroke="gray" fill="none" />
-      <rect x="10" y="10" width="50" height="50" fill="black" />
+      <g id="preview">
+      </g>
     </svg>
   </div>
 </template>
 
 <script>
 import ImageProcessor from './ImageProcessor.vue';
+import panzoom from '../../node_modules/panzoom';
 
 function drawToSvg(imageData, svg, x, y) {
   /* Takes an ImageData object and an SVG element, and draws the
@@ -64,8 +65,11 @@ export default {
   },
   methods: {
     onImageSampled(imageData) {
-      const svgElement = document.getElementsByClassName('preview-svg')[0];
+      const svgElement = document.querySelector('#preview');
       drawToSvg(imageData, svgElement, 80, 40);
+
+      const draggableElement = document.querySelector('#preview');
+      panzoom(draggableElement);
     },
   },
 };

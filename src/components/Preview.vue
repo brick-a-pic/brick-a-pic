@@ -1,9 +1,22 @@
 <template>
   <div class="background-wrapper">
     <ImageProcessor @imageSampled='onImageSampled' :imageUrl='imageUrl'></ImageProcessor>
-    <svg class="preview-svg" viewBox="0 0 200 100">
-      <rect x="0" y="0" width="200" height="100" stroke="gray" fill="none" />
-      <rect x="10" y="10" width="50" height="50" fill="black" />
+    <svg
+      v-if="imageData"
+      class="preview-svg"
+      :viewBox="`0 0 ${imageData.width} ${imageData.height}`"
+    >
+      <g v-for="y in imageData.height" :key="y">
+        <rect
+          v-for="x in imageData.width"
+          :key="x"
+          width="1"
+          height="1"
+          :x="x-1"
+          :y="y-1"
+          :fill="getColor(x-1, y-1)"
+        />
+      </g>
     </svg>
   </div>
 </template>
@@ -11,61 +24,26 @@
 <script>
 import ImageProcessor from './ImageProcessor.vue';
 
-function drawToSvg(imageData, svg, x, y) {
-  /* Takes an ImageData object and an SVG element, and draws the
-     ImageData to the SVG element as a bunch of rects. */
-
-  // First we split up ImageData.data (a flat uint_8 array) to separate arrays
-  // of RGB color values
-  const red = [];
-  const green = [];
-  const blue = [];
-  for (let pixel = 0; pixel < imageData.data.length; pixel += 4) {
-    red.push(imageData.data[pixel]);
-    green.push(imageData.data[pixel + 1]);
-    blue.push(imageData.data[pixel + 2]);
-  }
-
-  // how big each 'pixel' will be, in SVG-units
-  const pixelHeight = 1;
-  const pixelWidth = 1;
-  const svgUri = 'http://www.w3.org/2000/svg'; // needed to create SVG elements
-  let tempSquare;
-  let colorAttribute;
-  let pixelPosition;
-
-  // then iterate through every pixelwise position in the image data we have
-  for (let yPosition = 0; yPosition < imageData.height; yPosition += 1) {
-    for (let xPosition = 0; xPosition < imageData.width; xPosition += 1) {
-      // get the position of the pixel in the flattened array
-      pixelPosition = (yPosition * imageData.width) + xPosition;
-
-      // each square in the transformed image will be an independent SVG rect, so create the element
-      tempSquare = document.createElementNS(svgUri, 'rect');
-      // use the pixel data to figure out what color it should be
-      colorAttribute = `fill: rgb(${red[pixelPosition]},${green[pixelPosition]},${blue[pixelPosition]});`;
-      // then set attributes like size/position/color
-      tempSquare.setAttributeNS(null, 'style', colorAttribute);
-      tempSquare.setAttributeNS(null, 'height', pixelHeight);
-      tempSquare.setAttributeNS(null, 'width', pixelWidth);
-      tempSquare.setAttributeNS(null, 'x', String(x + xPosition * pixelWidth));
-      tempSquare.setAttributeNS(null, 'y', String(y + yPosition * pixelHeight));
-      // finally, attach it to the svg element in the DOM
-      svg.appendChild(tempSquare);
-    }
-  }
-}
 
 export default {
   name: 'Preview',
-  props: ['imageUrl', 'imageData'],
+  props: ['imageUrl'],
   components: {
     ImageProcessor,
   },
+
+  data: () => ({
+    imageData: null,
+  }),
+
   methods: {
     onImageSampled(imageData) {
-      const svgElement = document.getElementsByClassName('preview-svg')[0];
-      drawToSvg(imageData, svgElement, 80, 40);
+      this.imageData = imageData;
+    },
+    getColor(x, y) {
+      const index = 4 * (y * this.imageData.width + x);
+      const [r, g, b, a] = this.imageData.data.slice(index, index + 4);
+      return `rgba(${r}, ${g}, ${b}, ${a / 256})`;
     },
   },
 };

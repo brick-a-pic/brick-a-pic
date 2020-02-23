@@ -12,7 +12,7 @@ export default {
   props: ['imageUrl'],
   watch: {
     imageUrl(url) {
-      console.log(url);
+      // console.log(url);
       let pixelData = [];
       const ctx = document.getElementById('processing-canvas').getContext('2d');
       const img = new Image();
@@ -24,6 +24,9 @@ export default {
         pixelData = ctx.getImageData(0, 0, width, height);
         // TODO: adjust each pixel to the closest LEGO color
         self.$emit('imageSampled', pixelData);
+        // since we've already loaded the image, no need to keep the
+        // object URL anymore
+        URL.revokeObjectURL(url);
       };
       img.src = url;
     },

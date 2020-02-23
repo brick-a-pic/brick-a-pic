@@ -9,8 +9,8 @@
 </template>
 
 <script>
+import panzoom from 'panzoom';
 import ImageProcessor from './ImageProcessor.vue';
-import panzoom from '../../node_modules/panzoom';
 
 function drawToSvg(imageData, svg, x, y) {
   /* Takes an ImageData object and an SVG element, and draws the
@@ -67,10 +67,11 @@ export default {
     onImageSampled(imageData) {
       const svgElement = document.querySelector('#preview');
       drawToSvg(imageData, svgElement, 80, 40);
-
-      const draggableElement = document.querySelector('#preview');
-      panzoom(draggableElement);
     },
+  },
+  mounted() {
+    const draggableElement = document.querySelector('#preview');
+    panzoom(draggableElement);
   },
 };
 </script>

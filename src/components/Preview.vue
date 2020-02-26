@@ -1,27 +1,32 @@
 <template>
-  <div class="background-wrapper">
+  <div class="background-wrapper" id="background">
     <ImageProcessor @imageSampled='onImageSampled' :imageUrl='imageUrl'></ImageProcessor>
-    <svg
-      v-if="imageData"
-      class="preview-svg"
-      :viewBox="`0 0 ${imageData.width} ${imageData.height}`"
-    >
-      <g v-for="y in imageData.height" :key="y">
-        <rect
-          v-for="x in imageData.width"
-          :key="x"
-          width="1"
-          height="1"
-          :x="x-1"
-          :y="y-1"
-          :fill="getColor(x-1, y-1)"
-        />
-      </g>
-    </svg>
+    <div id="draggable">
+      <svg
+        v-if="imageData"
+        class="preview-svg"
+        :viewBox="`0 0 ${imageData.width} ${imageData.height}`"
+      >
+        <g>
+          <g v-for="y in imageData.height" :key="y">
+            <rect
+              v-for="x in imageData.width"
+              :key="x"
+              width="1"
+              height="1"
+              :x="x-1"
+              :y="y-1"
+              :fill="getColor(x-1, y-1)"
+            />
+          </g>
+        </g>
+      </svg>
+    </div>
   </div>
 </template>
 
 <script>
+import panzoom from 'panzoom';
 import ImageProcessor from './ImageProcessor.vue';
 
 
@@ -39,6 +44,8 @@ export default {
   methods: {
     onImageSampled(imageData) {
       this.imageData = imageData;
+      const draggableElement = document.querySelector('#draggable');
+      panzoom(draggableElement);
     },
     getColor(x, y) {
       const index = 4 * (y * this.imageData.width + x);

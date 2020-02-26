@@ -44,13 +44,15 @@ export default {
   methods: {
     onImageSampled(imageData) {
       this.imageData = imageData;
-      const draggableElement = document.querySelector('#draggable');
-      panzoom(draggableElement);
     },
     getColor(x, y) {
       const index = 4 * (y * this.imageData.width + x);
       const [r, g, b, a] = this.imageData.data.slice(index, index + 4);
       return `rgba(${r}, ${g}, ${b}, ${a / 256})`;
+    },
+    mount() {
+      const draggableElement = document.querySelector('#draggable');
+      panzoom(draggableElement);
     },
   },
 };

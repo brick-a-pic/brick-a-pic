@@ -50,10 +50,11 @@ export default {
       const [r, g, b, a] = this.imageData.data.slice(index, index + 4);
       return `rgba(${r}, ${g}, ${b}, ${a / 256})`;
     },
-    mount() {
-      const draggableElement = document.querySelector('#draggable');
-      panzoom(draggableElement);
-    },
+  },
+
+  mounted() {
+    const draggableElement = document.querySelector('#draggable');
+    panzoom(draggableElement);
   },
 };
 </script>

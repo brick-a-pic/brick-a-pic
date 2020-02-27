@@ -5,8 +5,8 @@
 </template>
 
 <script>
-import { colorMatch } from '../colors';
-import LegoData from '../LegoData';
+import { colorMatch } from '@/colors';
+import LegoData from '@/LegoData';
 
 export default {
   name: 'ImageProcessor',

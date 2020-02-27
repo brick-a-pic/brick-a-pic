@@ -29,21 +29,4 @@ export const closestMatch = (rgb) => {
   return LEGO_COLORS[index];
 };
 
-export const colorMatch = (data) => {
-  const legoColor = data; // TODO: This mutates the original data object.
-
-  for (let i = 0; i < legoColor.data.length; i += 4) {
-    const r = legoColor.data[i];
-    const g = legoColor.data[i + 1];
-    const b = legoColor.data[i + 2];
-    const match = closestMatch([r, g, b]);
-    const r1 = match[0];
-    const g1 = match[1];
-    const b1 = match[2];
-    legoColor.data[i] = r1;
-    legoColor.data[i + 1] = g1;
-    legoColor.data[i + 2] = b1;
-  }
-
-  return legoColor;
-};
+export const colorMatch = data => data.map(row => row.map(closestMatch));

@@ -6,6 +6,7 @@
 
 <script>
 import { colorMatch } from '../colors';
+import LegoData from '../LegoData';
 
 export default {
   name: 'ImageProcessor',
@@ -24,10 +25,12 @@ export default {
         const height = 32;
         ctx.drawImage(img, 0, 0, width, height);
         pixelData = ctx.getImageData(0, 0, width, height);
-        // TODO: adjust each pixel to the closest LEGO color
-        const newPixelData = colorMatch(pixelData);
-        // console.log(newPixelData);
-        self.$emit('imageSampled', newPixelData);
+
+        const legoData = new LegoData(pixelData);
+        // Adjust each pixel to the closest LEGO color
+        legoData.data = colorMatch(legoData.data);
+
+        self.$emit('imageSampled', legoData);
         // since we've already loaded the image, no need to keep the
         // object URL anymore
         URL.revokeObjectURL(url);

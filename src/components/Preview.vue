@@ -8,15 +8,15 @@
         :viewBox="`0 0 ${imageData.width} ${imageData.height}`"
       >
         <g>
-          <g v-for="y in imageData.height" :key="y">
+          <g v-for="(row, y) in imageData.data" :key="y">
             <rect
-              v-for="x in imageData.width"
+              v-for="(color, x) in row"
               :key="x"
               width="1"
               height="1"
-              :x="x-1"
-              :y="y-1"
-              :fill="getColor(x-1, y-1)"
+              :x="x"
+              :y="y"
+              :fill="getColor(color)"
             />
           </g>
         </g>
@@ -45,10 +45,8 @@ export default {
     onImageSampled(imageData) {
       this.imageData = imageData;
     },
-    getColor(x, y) {
-      const index = 4 * (y * this.imageData.width + x);
-      const [r, g, b, a] = this.imageData.data.slice(index, index + 4);
-      return `rgba(${r}, ${g}, ${b}, ${a / 256})`;
+    getColor([r, g, b, a]) {
+      return `rgba(${r}, ${g}, ${b}, ${(a || 256) / 256})`;
     },
   },
 

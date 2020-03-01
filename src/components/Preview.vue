@@ -1,6 +1,7 @@
 <template>
   <div class="background-wrapper">
-    <ImageProcessor @imageSampled='onImageSampled' :imageUrl='imageUrl'></ImageProcessor>
+    <ImageProcessor @imageSampled='onImageSampled' :imageUrl='imageUrl'
+    :imageDelete='imageDelete'></ImageProcessor>
     <svg class="preview-svg" viewBox="0 0 200 100">
       <rect x="0" y="0" width="200" height="100" stroke="gray" fill="none" />
       <rect x="10" y="10" width="50" height="50" fill="black" />
@@ -34,6 +35,27 @@ function drawToSvg(imageData, svg, x, y) {
   let colorAttribute;
   let pixelPosition;
 
+  // clear existing image
+  for (let yPosition = 0; yPosition < 50; yPosition += 1) {
+    for (let xPosition = 0; xPosition < 50; xPosition += 1) {
+      // get the position of the pixel in the flattened array
+      pixelPosition = (yPosition * imageData.width) + xPosition;
+
+      // each square in the transformed image will be an independent SVG rect, so create the element
+      tempSquare = document.createElementNS(svgUri, 'rect');
+      // use the pixel data to figure out what color it should be
+      colorAttribute = `fill: rgb(0,0,0);`;
+      // then set attributes like size/position/color
+      tempSquare.setAttributeNS(null, 'style', colorAttribute);
+      tempSquare.setAttributeNS(null, 'height', pixelHeight);
+      tempSquare.setAttributeNS(null, 'width', pixelWidth);
+      tempSquare.setAttributeNS(null, 'x', String(x + xPosition * pixelWidth));
+      tempSquare.setAttributeNS(null, 'y', String(y + yPosition * pixelHeight));
+      // finally, attach it to the svg element in the DOM
+      svg.appendChild(tempSquare);
+    }
+  }
+
   // then iterate through every pixelwise position in the image data we have
   for (let yPosition = 0; yPosition < imageData.height; yPosition += 1) {
     for (let xPosition = 0; xPosition < imageData.width; xPosition += 1) {
@@ -58,7 +80,7 @@ function drawToSvg(imageData, svg, x, y) {
 
 export default {
   name: 'Preview',
-  props: ['imageUrl', 'imageData'],
+  props: ['imageUrl', 'imageData', 'imageDelete'],
   components: {
     ImageProcessor,
   },

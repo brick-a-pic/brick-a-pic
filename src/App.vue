@@ -15,11 +15,12 @@
     </v-app-bar>
 
     <v-content>
-      <Preview :imageUrl="imageUrl"></Preview>
+      <Preview :imageUrl="imageUrl"
+               :imageDelete="imageDelete"></Preview>
       <v-container
         fluid
       >
-        <Settings @imageLoaded="passImage" v-if="showDrawer"></Settings>
+        <Settings @imageLoaded="passImage" @imageDelete="deleteImage" v-if="showDrawer"></Settings>
       </v-container>
     </v-content>
   </v-app>
@@ -37,10 +38,15 @@ export default {
   data: () => ({
     showDrawer: true,
     imageUrl: '',
+    imageDelete: 0,
   }),
   methods: {
     passImage(data) {
       this.imageUrl = data;
+    },
+    deleteImage() {
+      console.log('Yet another test');
+      this.imageDelete = this.imageDelete + 1;
     },
   },
 };

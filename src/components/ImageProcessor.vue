@@ -21,8 +21,9 @@ export default {
       const self = this;
 
       img.onload = function sampleImage() {
-        const width = 32;
-        const height = 32;
+        const width = document.getElementById('widthSetting').value;
+        const height = document.getElementById('heightSetting').value;
+        console.log(width)
         ctx.drawImage(img, 0, 0, width, height);
         pixelData = ctx.getImageData(0, 0, width, height);
 

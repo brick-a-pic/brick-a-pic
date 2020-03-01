@@ -4,8 +4,7 @@
     <v-card-text>
       <OpenImage @change="onImageOpen"
         @delete="ImageDelete"
-        :ImageCheck = "ImageCheck"
-        :imageDelete = "imageDelete"/>
+        :ImageCheck = "ImageCheck"/>
       <v-layout row wrap>
           <v-flex xs3 style="margin: 24px;">
               <v-text-field
@@ -62,7 +61,7 @@ export default {
       // this.ImageDelete();
     },
     ImageDelete() {
-      this.$emit('imageDelete');
+      // this.$emit('imageLoaded', );
     },
   },
 };

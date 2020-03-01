@@ -5,7 +5,7 @@
       <svg
         v-if="imageData"
         class="preview-svg"
-        :viewBox="`0 0 ${imageData.width} ${imageData.height}`"
+        :viewBox="`-1 -1 ${imageData.width + 1} ${imageData.height + 1}`"
       >
         <g>
           <g v-for="(row, y) in imageData.data" :key="y">
@@ -18,6 +18,22 @@
               :y="y"
               :fill="getColor(color)"
             />
+            <text
+              :x="-0.5"
+              :y="y+0.7"
+              class="small"
+              text-anchor="middle">
+              {{y+1}}
+            </text>
+          </g>
+          <g v-for="(row, x) in imageData.data" :key="x">
+            <text
+              :x="x+0.5"
+              :y="-0.2"
+              class="small"
+              text-anchor="middle">
+              {{x+1}}
+            </text>
           </g>
         </g>
         <defs>
@@ -25,7 +41,7 @@
               <path d="M 1 0 L 0 0 0 1" fill="none" stroke="gray" stroke-width="0.05"/>
             </pattern>
             <pattern id="grid" width="10" height="10" patternUnits="userSpaceOnUse">
-              <rect width="20" height="20" fill="url(#smallGrid)"/>
+              <rect width="10" height="10" fill="url(#smallGrid)"/>
               <path d="M 10 0 L 0 0 0 10" fill="none" stroke="gray" stroke-width="0.1"/>
             </pattern>
         </defs>
@@ -87,5 +103,7 @@ export default {
 #draggable {
   touch-action: none;
 }
+
+.small { font: 0.5px sans-serif; }
 
 </style>

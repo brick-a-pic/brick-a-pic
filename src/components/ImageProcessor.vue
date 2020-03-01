@@ -13,7 +13,6 @@ export default {
   props: ['imageUrl'],
   watch: {
     imageUrl(url) {
-      // console.log(url);
       let pixelData = [];
       const ctx = document.getElementById('processing-canvas').getContext('2d');
       ctx.clearRect(0, 0, ctx.canvas.width, ctx.canvas.height);
@@ -21,6 +20,7 @@ export default {
       const self = this;
 
       img.onload = function sampleImage() {
+
         const width = document.getElementById('widthSetting').value;
         const height = document.getElementById('heightSetting').value;
         ctx.drawImage(img, 0, 0, width, height);
@@ -31,6 +31,7 @@ export default {
         legoData.data = colorMatch(legoData.data);
 
         self.$emit('imageSampled', legoData);
+        console.log('what up');
         // since we've already loaded the image, no need to keep the
         // object URL anymore
         URL.revokeObjectURL(url);

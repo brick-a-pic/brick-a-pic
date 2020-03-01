@@ -5,6 +5,7 @@
       <OpenImage @change="onImageOpen"
         @delete="ImageDelete"
         :ImageCheck = "ImageCheck"/>
+      <ImageProcessor :imageUrl = "imageUrl"/>
       <v-layout row wrap>
           <v-flex xs3 style="margin: 24px;">
               <v-text-field
@@ -41,19 +42,23 @@
 
 <script>
 import OpenImage from './OpenImage.vue';
+import ImageProcessor from './ImageProcessor.vue';
 
 export default {
   name: 'Settings',
   components: {
     OpenImage,
+    ImageProcessor,
   },
   data: () => ({
     ImageCheck: 0,
     imageDelete: 0,
+    imageUrl: '',
   }),
   methods: {
-    onImageOpen(imageUrl) {
-      this.$emit('imageLoaded', imageUrl);
+    onImageOpen(data) {
+      this.imageUrl = data;
+      console.log('This is an img')
     },
     onDimChange() {
       // console.log(document.getElementById('imageInput').value);

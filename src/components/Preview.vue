@@ -1,6 +1,6 @@
 <template>
   <div class="background-wrapper" id="background">
-    <ImageProcessor @imageSampled='onImageSampled' :imageUrl='imageUrl'></ImageProcessor>
+    <ImageProcessor @imageSampled="onImageSampled"></ImageProcessor>
     <div id="draggable">
       <svg
         v-if="imageData"
@@ -43,6 +43,7 @@ export default {
 
   methods: {
     onImageSampled(imageData) {
+      console.log('yet another message')
       this.imageData = imageData;
     },
     getColor([r, g, b, a]) {

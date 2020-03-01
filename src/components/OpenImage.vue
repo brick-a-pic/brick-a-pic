@@ -44,11 +44,11 @@ export default {
   props: ['ImageCheck'],
   watch: {
     ImageCheck() {
-      const imageUrl = URL.createObjectURL(this.fileUpload);
       console.log(this.fileUpload);
+      const imageUrl = URL.createObjectURL(this.fileUpload);
       console.log('This is a test');
       this.$emit('change', imageUrl);
-      this.$emit('delete');
+      // this.$emit('delete');
       // Need to wait until after load to do this
       // URL.revokeObjectURL(imageUrl);
     },
@@ -66,6 +66,7 @@ export default {
         sample3,
       ],
       fileUpload: null,
+
     };
   },
 
@@ -74,6 +75,7 @@ export default {
       if (!file) return;
       // TODO: return if validation fails
       const imageUrl = URL.createObjectURL(file);
+      this.fileUpload = file;
       this.$emit('change', imageUrl);
       // Need to wait until after load to do this
       // URL.revokeObjectURL(imageUrl);

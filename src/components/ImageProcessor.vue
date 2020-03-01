@@ -32,7 +32,6 @@ export default {
         legoData.data = colorMatch(legoData.data);
 
         self.$emit('imageSampled', legoData);
-        console.log('what up');
         // since we've already loaded the image, no need to keep the
         // object URL anymore
         URL.revokeObjectURL(url);

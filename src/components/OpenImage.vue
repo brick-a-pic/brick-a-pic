@@ -44,7 +44,6 @@ export default {
   props: ['ImageCheck'],
   watch: {
     ImageCheck() {
-      console.log('This is another test')
       const imageUrl = URL.createObjectURL(this.fileUpload);
       this.$emit('change', imageUrl);
       // this.$emit('delete');

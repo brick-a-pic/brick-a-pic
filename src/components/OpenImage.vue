@@ -44,9 +44,7 @@ export default {
   props: ['ImageCheck'],
   watch: {
     ImageCheck() {
-      console.log(this.fileUpload);
       const imageUrl = URL.createObjectURL(this.fileUpload);
-      console.log('This is a test');
       this.$emit('change', imageUrl);
       // this.$emit('delete');
       // Need to wait until after load to do this

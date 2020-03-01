@@ -12,13 +12,6 @@ export default {
   name: 'ImageProcessor',
   props: ['imageUrl'],
 
-  methods: {
-    getSelectedColor(colorArr) {
-      console.log('here');
-      console.log(colorArr);
-    },
-  },
-
   watch: {
     imageUrl(url) {
       // console.log(url);
@@ -35,7 +28,6 @@ export default {
         pixelData = ctx.getImageData(0, 0, width, height);
 
         const legoData = new LegoData(pixelData);
-
         // Adjust each pixel to the closest LEGO color
         legoData.data = colorMatch(legoData.data);
 

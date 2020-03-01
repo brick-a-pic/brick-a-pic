@@ -31,12 +31,10 @@
         </v-col>
       </v-row>
     </v-container>
-
   </div>
 </template>
 
 <script>
-
 const sample1 = require('../assets/sample1.png');
 const sample2 = require('../assets/sample1.png');
 const sample3 = require('../assets/sample1.png');

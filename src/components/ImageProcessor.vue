@@ -21,7 +21,6 @@ export default {
       const self = this;
 
       img.onload = function sampleImage() {
-
         const width = document.getElementById('widthSetting').value;
         const height = document.getElementById('heightSetting').value;
         ctx.drawImage(img, 0, 0, width, height);

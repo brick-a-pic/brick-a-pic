@@ -26,15 +26,11 @@
 
 <script>
 import panzoom from 'panzoom';
-import ImageProcessor from './ImageProcessor.vue';
 
-
-export default { 
+export default {
   name: 'Preview',
   props: ['imageData'],
-  components: {
-    ImageProcessor,
-  },
+  components: {},
 
   methods: {
     getColor([r, g, b, a]) {

@@ -61,7 +61,7 @@ export default {
     },
     onImageSampled(imageData) {
       this.imageData = imageData;
-      this.$emit('imageLoaded', imageData)
+      this.$emit('imageLoaded', imageData);
     },
     onDimChange() {
       // console.log(document.getElementById('imageInput').value);

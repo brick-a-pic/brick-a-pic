@@ -1,6 +1,5 @@
 <template>
   <div class="background-wrapper" id="background">
-    <ImageProcessor @imageSampled="onImageSampled"></ImageProcessor>
     <div id="draggable">
       <svg
         v-if="imageData"
@@ -30,22 +29,14 @@ import panzoom from 'panzoom';
 import ImageProcessor from './ImageProcessor.vue';
 
 
-export default {
+export default { 
   name: 'Preview',
-  props: ['imageUrl'],
+  props: ['imageData'],
   components: {
     ImageProcessor,
   },
 
-  data: () => ({
-    imageData: null,
-  }),
-
   methods: {
-    onImageSampled(imageData) {
-      console.log('yet another message')
-      this.imageData = imageData;
-    },
     getColor([r, g, b, a]) {
       return `rgba(${r}, ${g}, ${b}, ${(a || 256) / 256})`;
     },

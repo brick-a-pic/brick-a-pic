@@ -5,7 +5,7 @@
       <OpenImage @change="onImageOpen"
         @delete="ImageDelete"
         :ImageCheck = "ImageCheck"/>
-      <ImageProcessor :imageUrl = "imageUrl"/>
+      <ImageProcessor :imageUrl = "imageUrl" @imageSampled="onImageSampled"/>
       <v-layout row wrap>
           <v-flex xs3 style="margin: 24px;">
               <v-text-field
@@ -58,7 +58,10 @@ export default {
   methods: {
     onImageOpen(data) {
       this.imageUrl = data;
-      console.log('This is an img')
+    },
+    onImageSampled(imageData) {
+      this.imageData = imageData;
+      this.$emit('imageLoaded', imageData)
     },
     onDimChange() {
       // console.log(document.getElementById('imageInput').value);

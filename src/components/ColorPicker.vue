@@ -1,29 +1,53 @@
 <template>
   <div>
-    <div class="subtitle-1">Pick which LEGO colors you would like to use
-      <div class="my-2">
-       <v-btn-toggle
-          v-model="toggle_multiple"
-          dense
-          background-color="primary"
-          dark
-          multiple
-        >
-          <v-btn fab small>
-          </v-btn>
-          <v-btn fab small>
-          </v-btn>
-          <v-btn fab small>
-          </v-btn>
-
-
-        </v-btn-toggle>
+      <div class="subtitle-1">Pick which LEGO colors you would like to use</div>
+      <div id="colorDiv">
+        <v-container>
+          <v-btn-toggle id="btn-group"
+            v-model="toggle_exclusive"
+            multiple
+            @change="changeColor"
+          >
+            <v-row>
+              <v-col
+                v-for="(col, colorIndex) in colorOptions"
+                :key="colorIndex"
+                cols="4"
+              >
+                <v-btn :color=col :id=colorIndex>
+                </v-btn>
+              </v-col>
+            </v-row>
+            </v-btn-toggle>
+            <v-col
+              cols="12"
+              class="text-center"
+            >
+            ColorSelected: {{ toggle_exclusive }}
+          </v-col>
+        </v-container>
       </div>
     </div>
-  </div>
 </template>
 
 <script>
+import { LEGO_COLORS } from '@/colors';
+
+const colorPalette = [];
+
+for (let i = 0; i < LEGO_COLORS.length; i += 1) {
+  const rgb = `rgb( ${LEGO_COLORS[i][0].toString()} , ${LEGO_COLORS[i][1].toString()} , ${LEGO_COLORS[i][2].toString()} )`;
+  colorPalette.push(rgb);
+}
+
+export default {
+  data() {
+    return {
+      colorOptions: colorPalette,
+      toggle_exclusive: [],
+    };
+  },
+};
 </script>
 
 <style>

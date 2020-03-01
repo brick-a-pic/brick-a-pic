@@ -3,6 +3,7 @@
     <ImageProcessor @imageSampled='onImageSampled' :imageUrl='imageUrl'></ImageProcessor>
     <div id="draggable">
       <svg
+        shape-rendering="crispEdges"
         v-if="imageData"
         class="preview-svg"
         :viewBox="`0 0 ${imageData.width} ${imageData.height}`"

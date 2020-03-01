@@ -20,6 +20,16 @@
             />
           </g>
         </g>
+        <defs>
+            <pattern id="smallGrid" width="1" height="1" patternUnits="userSpaceOnUse">
+              <path d="M 1 0 L 0 0 0 1" fill="none" stroke="gray" stroke-width="0.05"/>
+            </pattern>
+            <pattern id="grid" width="10" height="10" patternUnits="userSpaceOnUse">
+              <rect width="20" height="20" fill="url(#smallGrid)"/>
+              <path d="M 10 0 L 0 0 0 10" fill="none" stroke="gray" stroke-width="0.1"/>
+            </pattern>
+        </defs>
+        <rect width="100%" height="100%" fill="url(#grid)" />
       </svg>
     </div>
   </div>

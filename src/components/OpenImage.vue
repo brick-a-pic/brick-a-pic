@@ -47,8 +47,6 @@ export default {
       const imageUrl = URL.createObjectURL(this.fileUpload);
       this.$emit('change', imageUrl);
       // this.$emit('delete');
-      // Need to wait until after load to do this
-      // URL.revokeObjectURL(imageUrl);
     },
   },
   data() {
@@ -64,7 +62,6 @@ export default {
         sample3,
       ],
       fileUpload: null,
-
     };
   },
 

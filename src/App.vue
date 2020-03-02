@@ -15,7 +15,7 @@
     </v-app-bar>
 
     <v-content>
-      <Preview :imageData = "imageData">  </Preview>
+      <Preview :imageData="imageData"></Preview>
       <v-container
         fluid
       >

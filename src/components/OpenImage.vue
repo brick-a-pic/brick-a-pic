@@ -73,10 +73,6 @@ export default {
       if (!file) return;
       // TODO: return if validation fails
       const imageUrl = URL.createObjectURL(file);
-      const img = new Image();
-      img.src = imageUrl;
-      // print(img.width);
-      // print(img.height);
       this.fileUpload = file;
       this.$emit('change', imageUrl);
       // Need to wait until after load to do this

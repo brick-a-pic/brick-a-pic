@@ -14,7 +14,7 @@
 importScripts("https://storage.googleapis.com/workbox-cdn/releases/4.3.1/workbox-sw.js");
 
 importScripts(
-  "precache-manifest.bcae63e5e9d359418bc714f480ca4b66.js"
+  "precache-manifest.cc2b2a29cf7f27e7469159797742da99.js"
 );
 
 workbox.core.setCacheNameDetails({prefix: "brick-a-pic"});

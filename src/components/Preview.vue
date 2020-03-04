@@ -1,6 +1,10 @@
 <template>
   <div class="background-wrapper" id="background">
-    <ImageProcessor @imageSampled='onImageSampled' :imageUrl='imageUrl'></ImageProcessor>
+    <ImageProcessor
+      @imageSampled='onImageSampled'
+      :imageUrl='imageUrl'
+      :colorSelected='colorSelected'>
+    </ImageProcessor>
     <div id="draggable">
       <svg
         v-if="imageData"
@@ -32,18 +36,19 @@ import ImageProcessor from './ImageProcessor.vue';
 
 export default {
   name: 'Preview',
-  props: ['imageUrl'],
+  props: ['imageUrl', 'colorSelected'],
   components: {
     ImageProcessor,
   },
 
   data: () => ({
-    imageData: null,
+    imageData: [],
   }),
 
   methods: {
     onImageSampled(imageData) {
       this.imageData = imageData;
+      // console.log(imageData);
     },
     getColor([r, g, b, a]) {
       return `rgba(${r}, ${g}, ${b}, ${(a || 256) / 256})`;

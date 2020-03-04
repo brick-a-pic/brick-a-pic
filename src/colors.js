@@ -113,17 +113,28 @@ export const LEGO_COLORS = [
   [137, 135, 136],
 ];
 
-export const closestMatch = (rgb) => {
+
+export const closestMatch = (rgb, colorOptions) => {
+  // console.log(colorOptions);
+  const COLORS = [];
+  for (let i = 0; i < colorOptions.length; i += 1) {
+    // console.log(COLORS);
+    COLORS.push(LEGO_COLORS[colorOptions[i]]);
+  }
+
+  // console.log(COLORS);
+  // console.log(COLORS.length);
+
   let minDistance = Infinity;
   let index = 0;
   const r = rgb[0];
   const g = rgb[1];
   const b = rgb[2];
 
-  for (let i = 0; i < LEGO_COLORS.length; i += 1) {
-    const r1 = LEGO_COLORS[i][0];
-    const g1 = LEGO_COLORS[i][1];
-    const b1 = LEGO_COLORS[i][2];
+  for (let i = 0; i < COLORS.length; i += 1) {
+    const r1 = COLORS[i][0];
+    const g1 = COLORS[i][1];
+    const b1 = COLORS[i][2];
     const d = ((r1 - r) ** 2) + ((g1 - g) ** 2) + ((b1 - b) ** 2);
 
     if (d < minDistance) {
@@ -131,7 +142,9 @@ export const closestMatch = (rgb) => {
       index = i;
     }
   }
-  return LEGO_COLORS[index];
+  return COLORS[index];
 };
 
-export const colorMatch = data => data.map(row => row.map(closestMatch));
+export const colorMatch = (data, colorOptions) => data.map(
+  row => row.map(pixel => closestMatch(pixel, colorOptions)),
+);

@@ -12,7 +12,7 @@
               <v-col
                 v-for="(col, colorIndex) in colorOptions"
                 :key="colorIndex"
-                cols="4"
+                cols="2"
               >
                 <v-btn :color=col :id=colorIndex>
                 </v-btn>
@@ -23,7 +23,6 @@
               cols="12"
               class="text-center"
             >
-            ColorSelected: {{ toggle_exclusive }}
           </v-col>
         </v-container>
       </div>
@@ -47,8 +46,18 @@ export default {
       toggle_exclusive: [],
     };
   },
+
+  methods: {
+    changeColor() {
+      console.log('change');
+      this.$emit('colorSelected', this.toggle_exclusive);
+    },
+  },
 };
 </script>
 
 <style>
+.v-btn {
+  max-width: 1;
+}
 </style>

@@ -10,6 +10,7 @@
         <g>
           <g v-for="(row, y) in imageData.data" :key="y">
             <rect
+              class="pixel"
               v-for="(color, x) in row"
               :key="x"
               width="1"
@@ -91,6 +92,11 @@ export default {
 
 #draggable {
   touch-action: none;
+}
+
+.pixel {
+  stroke: black;
+  stroke-width: 0.01px;
 }
 
 .small { font: 0.5px sans-serif; }

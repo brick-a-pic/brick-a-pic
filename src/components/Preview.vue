@@ -20,14 +20,15 @@
               :fill="getColor(color)"
             />
             <text
-              :x="-0.5"
-              :y="y+0.7"
+              :x="-0.2"
+              :y="y+0.5"
               class="small"
-              text-anchor="middle">
+              text-anchor="end"
+              dominant-baseline="central">
               {{y+1}}
             </text>
           </g>
-          <g v-for="(row, x) in imageData.data" :key="x">
+          <g v-for="(row, x) in imageData.data" :key="`row${x}`">
             <text
               :x="x+0.5"
               :y="-0.2"

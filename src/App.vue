@@ -36,7 +36,7 @@ export default {
   },
   data: () => ({
     showDrawer: true,
-    imageData: '',
+    imageData: null,
   }),
   methods: {
     passImage(data) {

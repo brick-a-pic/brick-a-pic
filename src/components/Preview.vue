@@ -1,6 +1,6 @@
 <template>
   <div class="background-wrapper" id="background">
-    <div id="draggable">
+    <div class="draggable" ref="panzoom">
       <svg
         shape-rendering="crispEdges"
         v-if="imageData"
@@ -61,6 +61,10 @@ export default {
   props: ['imageData'],
   components: {},
 
+  data: () => ({
+    panzoomInstance: null,
+  }),
+
   methods: {
     getColor([r, g, b, a]) {
       return `rgba(${r}, ${g}, ${b}, ${(a || 256) / 256})`;
@@ -68,22 +72,27 @@ export default {
   },
 
   mounted() {
-    const draggableElement = document.querySelector('#draggable');
-    panzoom(draggableElement);
+    this.panzoomInstance = panzoom(this.$refs.panzoom, {
+      bounds: true,
+    });
+  },
+  beforeDestroy() {
+    if (this.panzoomInstance) {
+      this.panzoomInstance.dispose();
+    }
   },
 };
 </script>
 
 <style>
-
-
 .background-wrapper {
   position: absolute;
   top: 0;
   bottom: 0;
   left: 0;
   right: 0;
-  background-color: #eee
+  background-color: #eee;
+  overflow: hidden;
 }
 
 .preview-svg {
@@ -91,7 +100,9 @@ export default {
   height: 100%;
 }
 
-#draggable {
+.draggable {
+  height: 100%;
+  width: 100%;
   touch-action: none;
 }
 
@@ -100,6 +111,7 @@ export default {
   stroke-width: 0.01px;
 }
 
-.small { font: 0.5px sans-serif; }
-
+.small {
+  font-size: 0.5px;
+}
 </style>

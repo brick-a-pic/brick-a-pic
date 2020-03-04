@@ -21,22 +21,25 @@
             />
             <text
               :x="-0.2"
-              :y="y+0.5"
+              :y="y + 0.5"
               class="small"
               text-anchor="end"
-              dominant-baseline="central">
-              {{y+1}}
+              dominant-baseline="central"
+            >
+              {{y + 1}}
             </text>
           </g>
-          <g v-for="(row, x) in imageData.data" :key="`row${x}`">
-            <text
-              :x="x+0.5"
-              :y="-0.2"
-              class="small"
-              text-anchor="middle">
-              {{x+1}}
-            </text>
-          </g>
+
+          <text
+            v-for="(row, x) in imageData.data"
+            :key="`row${x}`"
+            :x="x + 0.5"
+            :y="-0.2"
+            class="small"
+            text-anchor="middle"
+          >
+            {{x + 1}}
+          </text>
         </g>
         <defs>
             <pattern id="smallGrid" width="1" height="1" patternUnits="userSpaceOnUse">

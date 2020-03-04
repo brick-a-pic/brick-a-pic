@@ -31,7 +31,7 @@
           </g>
 
           <text
-            v-for="(row, x) in imageData.data"
+            v-for="(row, x) in imageData.data[0]"
             :key="`row${x}`"
             :x="x + 0.5"
             :y="-0.2"

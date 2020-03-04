@@ -15,24 +15,20 @@
               <v-text-field
               label="Width"
               id="widthSetting"
-              placeholder="64"
               type="number"
-              v-model="imageWidth"
-              @change="validateWidth"
-              min=0
-              max=5000
+              v-model.number.lazy ="imageWidth"
+              min=1
+              max=100
             ></v-text-field>
             </v-flex>
             <v-flex xs3 style="margin: 24px;">
             <v-text-field
               label="Height"
               id="heightSetting"
-              placeholder="64"
-              v-model="imageHeight"
-              @change="validateHeight"
+              v-model.number.lazy ="imageHeight"
               type="number"
-              min=0
-              max=5000
+              min=1
+              max=100
             ></v-text-field>
           </v-flex>
         </v-layout>
@@ -67,48 +63,26 @@ export default {
       // we briefly unpack the image here from its url to automatically
       // determine what the proportions of the transformed image should be
       const tmpImg = new Image();
-      const self = this;
+      // const self = this;
       tmpImg.onload = () => {
         const aspectRatio = tmpImg.height / tmpImg.width;
         if (tmpImg.height > tmpImg.width) {
-          this.imageWidth = self.minEdgeLength;
-          this.imageHeight = Math.floor(self.minEdgeLength * aspectRatio);
+          this.imageWidth = this.minEdgeLength;
+          this.imageHeight = Math.floor(this.minEdgeLength * aspectRatio);
         } else if (tmpImg.height < tmpImg.width) {
-          this.imageHeight = self.minEdgeLength;
-          this.imageWidth = Math.floor(self.minEdgeLength * aspectRatio);
+          this.imageHeight = this.minEdgeLength;
+          this.imageWidth = Math.floor(this.minEdgeLength * aspectRatio);
         } else {
-          this.imageWidth = self.minEdgeLength;
-          this.imageHeight = self.minEdgeLength;
+          this.imageWidth = this.minEdgeLength;
+          this.imageHeight = this.minEdgeLength;
         }
-        self.imageUrl = data;
+        this.imageUrl = data;
       };
       tmpImg.src = data;
     },
     onImageSampled(imageData) {
       this.imageData = imageData;
       this.$emit('imageLoaded', imageData);
-    },
-    validateWidth() {
-      if (typeof this.imageWidth === 'string') {
-        this.imageWidth = parseInt(this.imageWidth, 10);
-      }
-      if (this.imageWidth < this.minWidth || Number.isNaN(this.imageWidth) || typeof this.imageWidth === 'undefined') {
-        this.imageWidth = this.minWidth;
-      }
-      if (this.imageWidth > this.maxWidth) {
-        this.imageWidth = this.maxWidth;
-      }
-    },
-    validateHeight() {
-      if (typeof this.imageHeight === 'string') {
-        this.imageHeight = parseInt(this.imageHeight, 10);
-      }
-      if (this.imageHeight < this.minHeight) {
-        this.imageHeight = this.minHeight;
-      }
-      if (this.imageHeight > this.maxHeight) {
-        this.imageHeight = this.maxHeight;
-      }
     },
     ImageDelete() {
       // this.$emit('imageLoaded', );

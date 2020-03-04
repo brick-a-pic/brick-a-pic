@@ -71,7 +71,7 @@ export default {
           this.imageHeight = Math.floor(this.minEdgeLength * aspectRatio);
         } else if (tmpImg.height < tmpImg.width) {
           this.imageHeight = this.minEdgeLength;
-          this.imageWidth = Math.floor(this.minEdgeLength * aspectRatio);
+          this.imageWidth = Math.floor(this.minEdgeLength / aspectRatio);
         } else {
           this.imageWidth = this.minEdgeLength;
           this.imageHeight = this.minEdgeLength;

@@ -10,46 +10,55 @@ import LegoData from '@/LegoData';
 
 export default {
   name: 'ImageProcessor',
-  props: ['imageUrl', 'colorSelected'],
+  props: ['imageUrl', 'colorSelected', 'imageWidth', 'imageHeight'],
 
-  watch: {
-    imageUrl(url) {
-      // console.log(url);
-      let pixelData = [];
+  methods: {
+    sampleImage() {
+      // single method to reload image, so we can reload the image
+      // every time the URL *or* the dimensions change.
+      if (this.imageUrl === '') return; // only attempt to process image if a URL is set
+
       const ctx = document.getElementById('processing-canvas').getContext('2d');
       ctx.clearRect(0, 0, ctx.canvas.width, ctx.canvas.height);
       const img = new Image();
       const self = this;
 
       img.onload = function sampleImage() {
-        const width = 32;
-        const height = 32;
+        const width = self.imageWidth;
+        const height = self.imageHeight;
         ctx.drawImage(img, 0, 0, width, height);
-        pixelData = ctx.getImageData(0, 0, width, height);
+        const pixelData = ctx.getImageData(0, 0, width, height);
 
         const legoData = new LegoData(pixelData);
 
-        // Adjust each pixel to the closest LEGO color
-
+        // Adjust each pixel to the closest LEGO color based on user selections
         legoData.data = colorMatch(legoData.data, self.colorOptions);
 
         self.$emit('imageSampled', legoData);
-        // since we've already loaded the image, no need to keep the
-        // object URL anymore
-        URL.revokeObjectURL(url);
       };
-      img.src = url;
+      img.src = this.imageUrl;
     },
-
+  },
+  watch: {
+    imageUrl() {
+      this.sampleImage();
+    },
+    imageWidth() {
+      this.sampleImage();
+    },
+    imageHeight() {
+      this.sampleImage();
+    },
     colorSelected(color) {
-      // this.colorOptions = color;
-      const ctx = document.getElementById('processing-canvas').getContext('2d');
-      const width = 32;
-      const height = 32;
-      const pixelData = ctx.getImageData(0, 0, width, height);
-      const legoData = new LegoData(pixelData);
-      legoData.data = colorMatch(legoData.data, color);
-      this.$emit('imageSampled', legoData);
+      console.log(color);
+      this.colorOptions = color;
+      this.sampleImage();
+      // const ctx = document.getElementById('processing-canvas').getContext('2d');
+      // const width = 32;
+      // const height = 32;
+      // const pixelData = ctx.getImageData(0, 0, width, height);
+      // const legoData = new LegoData(pixelData);
+      // legoData.data = colorMatch(legoData.data, color);
     },
   },
 };

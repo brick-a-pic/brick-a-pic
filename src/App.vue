@@ -21,7 +21,6 @@
       >
         <Settings
           @imageLoaded="passImage" v-if="showDrawer"
-          @colorSelected="getColorSelected"
         ></Settings>
       </v-container>
     </v-content>
@@ -39,18 +38,19 @@ export default {
   },
   data: () => ({
     showDrawer: true,
-    imageUrl: '',
-    colorSelected: '',
+    // imageUrl: '',
+    // colorSelected: '',
+    imageData: null,
   }),
   methods: {
     passImage(data) {
-      this.imageUrl = data;
+      this.imageData = data;
     },
-    getColorSelected(colorSelected) {
-      console.log('update in app');
-      console.log(colorSelected);
-      this.colorSelected = colorSelected;
-    },
+    // getColorSelected(colorSelected) {
+    //   // console.log('update in app');
+    //   // console.log(colorSelected);
+    //   this.colorSelected = colorSelected;
+    // },
   },
 };
 </script>

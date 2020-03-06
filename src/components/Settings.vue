@@ -1,5 +1,5 @@
 <template>
-  <v-card max-width="20em">
+  <v-card max-width="20em" max-height="100%" style="overflow: auto;">
     <v-card-title>Options</v-card-title>
     <v-card-text>
       <OpenImage @change="onImageOpen"
@@ -10,28 +10,44 @@
         :image-height="imageHeight"
         :image-url="imageUrl"
         @imageSampled="onImageSampled"/>
-      <v-layout row wrap>
-          <v-flex xs3 style="margin: 24px;">
-              <v-text-field
+      <v-container fluid>
+        <v-row>
+          <v-col>
+            <v-text-field
               label="Width"
               id="widthSetting"
               type="number"
-              v-model.number.lazy ="imageWidth"
+              :value="imageWidth"
+              @change="onWidthChange"
+              :rules="[rules.positive]"
+              suffix="blocks"
               min=1
               max=100
             ></v-text-field>
-            </v-flex>
-            <v-flex xs3 style="margin: 24px;">
+          </v-col>
+          <v-col>
             <v-text-field
               label="Height"
               id="heightSetting"
-              v-model.number.lazy ="imageHeight"
+              :value="imageHeight"
+              @change="onHeightChange"
+              :rules="[rules.positive]"
+              suffix="blocks"
               type="number"
               min=1
               max=100
             ></v-text-field>
-          </v-flex>
-        </v-layout>
+          </v-col>
+        </v-row>
+        <v-row no-gutters>
+          <v-col>
+          <v-switch
+            v-model="preserveRatio"
+            label="Preserve aspect ratio"
+          ></v-switch>
+          </v-col>
+        </v-row>
+      </v-container>
     </v-card-text>
   </v-card>
 </template>
@@ -57,6 +73,10 @@ export default {
     maxWidth: 100,
     minHeight: 1,
     maxHeight: 100,
+    preserveRatio: true,
+    rules: {
+      positive: value => value > 0 || 'Must be positive',
+    },
   }),
   methods: {
     onImageOpen(data) {
@@ -86,6 +106,22 @@ export default {
     },
     ImageDelete() {
       // this.$emit('imageLoaded', );
+    },
+    onHeightChange(newHeight) {
+      if (newHeight < 1) return; // TODO: tie this to the rules parameter
+
+      if (this.preserveRatio) {
+        this.imageWidth = Math.round(this.imageWidth * newHeight / this.imageHeight);
+      }
+      this.imageHeight = newHeight;
+    },
+    onWidthChange(newWidth) {
+      if (newWidth < 1) return; // TODO: tie this to the rules parameter
+
+      if (this.preserveRatio) {
+        this.imageHeight = Math.round(this.imageHeight * newWidth / this.imageWidth);
+      }
+      this.imageWidth = newWidth;
     },
   },
 };

@@ -1,5 +1,5 @@
 <template>
-  <v-app>
+  <v-app class="full-height">
     <v-app-bar
       app
       color="indigo"
@@ -14,10 +14,11 @@
       <v-btn text href="https://github.com/brick-a-pic/brick-a-pic" target="_blank">Source</v-btn>
     </v-app-bar>
 
-    <v-content>
+    <v-content class="full-height">
       <Preview :imageData="imageData"></Preview>
       <v-container
         fluid
+        class="full-height"
       >
         <Settings @imageLoaded="passImage" v-if="showDrawer"></Settings>
       </v-container>

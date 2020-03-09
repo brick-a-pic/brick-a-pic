@@ -1,6 +1,6 @@
 # Contributing to Brick-a-Pic
 
-Welcome to the Brick-a-Pic project! Thank you for considering contributing. If you have any questions, please join our [Gitter]() or [open an issue]().
+Welcome to the Brick-a-Pic project! Thank you for considering contributing. If you have any questions, please join our [Gitter](https://gitter.im/brick-a-pic-talk/community) or [open an issue](https://github.com/brick-a-pic/brick-a-pic/issues/new).
 
 ## Ways to Contribute
 
@@ -23,7 +23,7 @@ To contritube code, please [fork](https://github.com/brick-a-pic/brick-a-pic/for
 
 ### Code Style
 
-Our continuous integration system uses [ESLint]() to enforce consistent coding style. If there are linting errors, the build will fail, so please double-check that your build of our app succeeds before submittinmg a pull request. Running `npm run build` or `npm run serve` will attempt a build of the app to see if your build succeeds, and plugins such as [ESLint for VSCode](https://github.com/Microsoft/vscode-eslint.git) can show you linter errors to make linter debugging easier.
+Our continuous integration system uses [ESLint](https://eslint.org/) to enforce consistent coding style. If there are linting errors, the build will fail, so please double-check that your build of our app succeeds before submittinmg a pull request. Running `npm run build` or `npm run serve` will attempt a build of the app to see if your build succeeds, and plugins such as [ESLint for VSCode](https://github.com/Microsoft/vscode-eslint.git) can show you linter errors to make linter debugging easier.
 
 ### Unit Tests
 

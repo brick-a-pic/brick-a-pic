@@ -60,7 +60,7 @@ export default {
     maxWidth: 100,
     minHeight: 1,
     maxHeight: 100,
-    colorSelected: [],
+    colorSelected: '',
   }),
   methods: {
     onImageOpen(data) {
@@ -92,6 +92,7 @@ export default {
       // this.$emit('imageLoaded', );
     },
     getColorSelected(colorSelected) {
+      console.log('received in settings');
       this.colorSelected = colorSelected;
       console.log(this.colorSelected);
       // this.$emit('colorSelected', colorSelected);

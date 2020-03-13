@@ -15,7 +15,7 @@
     </v-app-bar>
 
     <v-content>
-      <Preview :imageUrl="imageUrl" :colorSelected="colorSelected"></Preview>
+      <Preview :imageUrl="imageUrl"></Preview>
       <v-container
         fluid
       >

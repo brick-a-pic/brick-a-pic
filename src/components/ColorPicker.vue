@@ -3,27 +3,35 @@
       <div class="subtitle-1">Pick which LEGO colors you would like to use</div>
       <div id="colorDiv">
         <v-container>
-          <v-btn-toggle id="btn-group"
+          <v-btn-toggle
             v-model="toggle_exclusive"
             multiple
+            mandatory
             @change="changeColor"
           >
-            <v-row>
+            <v-row
+              no-gutters
+              justify="start"
+            >
               <v-col
                 v-for="(col, colorIndex) in colorOptions"
                 :key="colorIndex"
-                cols="2"
+                cols="auto"
               >
-                <v-btn :color=col :id=colorIndex>
+                <v-btn
+                  depressed
+                  fab
+                  small
+                  tile
+                  :color=col
+                >
+                  <v-icon>
+                    {{ toggle_exclusive.includes(colorIndex) ? 'mdi-check' : '' }}
+                  </v-icon>
                 </v-btn>
               </v-col>
             </v-row>
-            </v-btn-toggle>
-            <v-col
-              cols="12"
-              class="text-center"
-            >
-          </v-col>
+          </v-btn-toggle>
         </v-container>
       </div>
     </div>
@@ -43,7 +51,7 @@ export default {
   data() {
     return {
       colorOptions: colorPalette,
-      toggle_exclusive: [],
+      toggle_exclusive: [0, 1, 2, 3],
     };
   },
 
@@ -57,7 +65,5 @@ export default {
 </script>
 
 <style>
-.v-btn {
-  max-width: 1;
-}
+
 </style>

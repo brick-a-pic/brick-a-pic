@@ -1,11 +1,5 @@
-<template>
+  <template>
   <div class="background-wrapper" id="background">
-    <!-- <ImageProcessor
-      @imageSampled='onImageSampled'
-      :imageUrl='imageUrl'
-      :colorSelected='colorSelected'>
-    </ImageProcessor> -->
-    <!-- <div id="draggable"> -->
     <div class="draggable" ref="panzoom">
       <svg
         shape-rendering="crispEdges"
@@ -37,7 +31,7 @@
           </g>
 
           <text
-            v-for="(row, x) in imageData.data"
+            v-for="(row, x) in imageData.data[0]"
             :key="`row${x}`"
             :x="x + 0.5"
             :y="-0.2"
@@ -67,22 +61,14 @@ import panzoom from 'panzoom';
 
 export default {
   name: 'Preview',
-  props: ['imageUrl', 'colorSelected'], // , 'imageData'],
+  props: ['imageData'],
   components: {},
-  // components: {
-  //   ImageProcessor,
-  // },
 
   data: () => ({
-    // imageData: [],
     panzoomInstance: null,
   }),
 
   methods: {
-    // onImageSampled(imageData) {
-    //   this.imageData = imageData;
-    //   // console.log(imageData);
-    // },
     getColor([r, g, b, a]) {
       return `rgba(${r}, ${g}, ${b}, ${(a || 256) / 256})`;
     },

@@ -9,45 +9,46 @@
         :image-width="imageWidth"
         :image-height="imageHeight"
         :image-url="imageUrl"
+        :colors="colors"
         @imageSampled="onImageSampled"/>
       <v-layout row wrap>
-          <v-flex xs3 style="margin: 24px;">
-              <v-text-field
-              label="Width"
-              id="widthSetting"
-              type="number"
-              v-model.number.lazy ="imageWidth"
-              min=1
-              max=100
-            ></v-text-field>
-            </v-flex>
-            <v-flex xs3 style="margin: 24px;">
+        <v-flex xs3 style="margin: 24px;">
             <v-text-field
-              label="Height"
-              id="heightSetting"
-              v-model.number.lazy ="imageHeight"
-              type="number"
-              min=1
-              max=100
-            ></v-text-field>
+            label="Width"
+            id="widthSetting"
+            type="number"
+            v-model.number.lazy ="imageWidth"
+            min=1
+            max=100
+          ></v-text-field>
           </v-flex>
-        </v-layout>
-        <ColorPicker @colorSelected="getColorSelected"/>
+          <v-flex xs3 style="margin: 24px;">
+          <v-text-field
+            label="Height"
+            id="heightSetting"
+            v-model.number.lazy ="imageHeight"
+            type="number"
+            min=1
+            max=100
+          ></v-text-field>
+        </v-flex>
+      </v-layout>
+      <ColorPicker @colorSelected="getColorSelected"/>
     </v-card-text>
   </v-card>
 </template>
 
 <script>
 import OpenImage from './OpenImage.vue';
-import ColorPicker from './ColorPicker.vue';
 import ImageProcessor from './ImageProcessor.vue';
+import ColorPicker from './ColorPicker.vue';
 
 export default {
   name: 'Settings',
   components: {
     OpenImage,
-    ColorPicker,
     ImageProcessor,
+    ColorPicker,
   },
   data: () => ({
     imageCheck: 0,
@@ -60,7 +61,7 @@ export default {
     maxWidth: 100,
     minHeight: 1,
     maxHeight: 100,
-    colorSelected: '',
+    colors: [1, 2, 3],
   }),
   methods: {
     onImageOpen(data) {
@@ -81,6 +82,7 @@ export default {
           this.imageHeight = this.minEdgeLength;
         }
         this.imageUrl = data;
+        this.colors = [0, 1, 2];
       };
       tmpImg.src = data;
     },
@@ -91,16 +93,14 @@ export default {
     ImageDelete() {
       // this.$emit('imageLoaded', );
     },
-    getColorSelected(colorSelected) {
-      console.log('received in settings');
-      this.colorSelected = colorSelected;
-      console.log(this.colorSelected);
-      // this.$emit('colorSelected', colorSelected);
+    getColorSelected(colors) {
+      this.colors = colors;
     },
   },
 };
 
 </script>
+
 <style>
 
 </style>

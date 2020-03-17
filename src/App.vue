@@ -15,13 +15,11 @@
     </v-app-bar>
 
     <v-content>
-      <Preview :imageUrl="imageUrl"></Preview>
+      <Preview :imageData="imageData"></Preview>
       <v-container
         fluid
       >
-        <Settings
-          @imageLoaded="passImage" v-if="showDrawer"
-        ></Settings>
+        <Settings @imageLoaded="passImage" v-if="showDrawer"></Settings>
       </v-container>
     </v-content>
   </v-app>
@@ -38,19 +36,12 @@ export default {
   },
   data: () => ({
     showDrawer: true,
-    // imageUrl: '',
-    // colorSelected: '',
     imageData: null,
   }),
   methods: {
     passImage(data) {
       this.imageData = data;
     },
-    // getColorSelected(colorSelected) {
-    //   // console.log('update in app');
-    //   // console.log(colorSelected);
-    //   this.colorSelected = colorSelected;
-    // },
   },
 };
 </script>

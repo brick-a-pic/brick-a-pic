@@ -1,13 +1,13 @@
 <template>
   <div>
-      <div class="subtitle-1">Pick which LEGO colors you would like to use</div>
+      <div class="subtitle-1">Select Lego brick colors</div>
       <div id="colorDiv">
         <v-container>
           <v-btn-toggle
-            v-model="toggle_exclusive"
             multiple
             mandatory
-            @change="changeColor"
+            :value="value"
+            @change="$emit('input', $event)"
           >
             <v-row
               no-gutters
@@ -26,7 +26,7 @@
                   :color=col
                 >
                   <v-icon>
-                    {{ toggle_exclusive.includes(colorIndex) ? 'mdi-check' : '' }}
+                    {{ value.includes(colorIndex) ? 'mdi-check' : '' }}
                   </v-icon>
                 </v-btn>
               </v-col>
@@ -48,18 +48,18 @@ for (let i = 0; i < LEGO_COLORS.length; i += 1) {
 }
 
 export default {
+  name: 'ColorPicker',
+  props: {
+    value: Array,
+  },
+
   data() {
     return {
       colorOptions: colorPalette,
-      toggle_exclusive: [0, 1, 2, 3],
     };
   },
 
   methods: {
-    changeColor() {
-      console.log('change');
-      this.$emit('colorSelected', this.toggle_exclusive);
-    },
   },
 };
 </script>

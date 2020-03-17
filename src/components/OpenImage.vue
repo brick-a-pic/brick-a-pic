@@ -46,7 +46,6 @@ export default {
     ImageCheck() {
       const imageUrl = URL.createObjectURL(this.fileUpload);
       this.$emit('change', imageUrl);
-      // this.$emit('delete');
     },
   },
   data() {

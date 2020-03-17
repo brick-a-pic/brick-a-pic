@@ -3,7 +3,6 @@
     <v-card-title>Options</v-card-title>
     <v-card-text>
       <OpenImage @change="onImageOpen"
-        @delete="ImageDelete"
         :imageCheck="imageCheck"/>
       <ImageProcessor
         :image-width="imageWidth"
@@ -33,7 +32,7 @@
           ></v-text-field>
         </v-flex>
       </v-layout>
-      <ColorPicker @colorSelected="getColorSelected"/>
+      <ColorPicker v-model="colors"/>
     </v-card-text>
   </v-card>
 </template>
@@ -52,7 +51,6 @@ export default {
   },
   data: () => ({
     imageCheck: 0,
-    imageDelete: 0,
     imageUrl: '',
     imageHeight: 64,
     imageWidth: 64,
@@ -61,7 +59,7 @@ export default {
     maxWidth: 100,
     minHeight: 1,
     maxHeight: 100,
-    colors: [1, 2, 3],
+    colors: [0, 1, 2, 3],
   }),
   methods: {
     onImageOpen(data) {
@@ -82,19 +80,12 @@ export default {
           this.imageHeight = this.minEdgeLength;
         }
         this.imageUrl = data;
-        this.colors = [0, 1, 2];
       };
       tmpImg.src = data;
     },
     onImageSampled(imageData) {
       this.imageData = imageData;
       this.$emit('imageLoaded', imageData);
-    },
-    ImageDelete() {
-      // this.$emit('imageLoaded', );
-    },
-    getColorSelected(colors) {
-      this.colors = colors;
     },
   },
 };

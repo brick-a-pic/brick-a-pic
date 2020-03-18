@@ -116,11 +116,7 @@ export const LEGO_COLORS = [
 
 export const closestMatch = (rgb, colorOptions) => {
   // console.log(colorOptions);
-  const COLORS = [];
-  for (let i = 0; i < colorOptions.length; i += 1) {
-    // console.log(COLORS);
-    COLORS.push(LEGO_COLORS[colorOptions[i]]);
-  }
+  const COLORS = colorOptions.map(colorIndex => LEGO_COLORS[colorIndex]);
 
   // console.log(COLORS);
   // console.log(COLORS.length);

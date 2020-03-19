@@ -13,7 +13,7 @@
 
     <div class="subtitle-1">Choose a sample</div>
     <v-container fluid>
-      <v-row>
+      <v-row align="center">
         <v-col
           v-for="(sample, sampleIndex) in sampleImages"
           :key="sampleIndex"
@@ -25,7 +25,6 @@
           >
             <v-img
               :src="sample"
-              aspect-ratio="1"
             />
           </v-card>
         </v-col>
@@ -36,8 +35,8 @@
 
 <script>
 const sample1 = require('../assets/sample1.png');
-const sample2 = require('../assets/sample1.png');
-const sample3 = require('../assets/sample1.png');
+const sample2 = require('../assets/sample2.png');
+const sample3 = require('../assets/sample3.png');
 
 export default {
   name: 'OpenImage',

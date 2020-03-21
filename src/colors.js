@@ -113,17 +113,17 @@ export const LEGO_COLORS = [
   [137, 135, 136],
 ];
 
+export const STD_LEGO_COLORS = [
+  [242, 243, 242], // white
+  [196, 40, 27], // bright red
+  [13, 105, 171], // bright blue
+  [245, 205, 47], // bright yellow
+  [27, 42, 52], // black
+  [40, 127, 70], // dark green
+];
 
 export const closestMatch = (rgb, colorOptions) => {
-  // console.log(colorOptions);
-  const COLORS = [];
-  for (let i = 0; i < colorOptions.length; i += 1) {
-    // console.log(COLORS);
-    COLORS.push(LEGO_COLORS[colorOptions[i]]);
-  }
-
-  // console.log(COLORS);
-  // console.log(COLORS.length);
+  const COLORS = colorOptions.map(colorIndex => LEGO_COLORS[colorIndex]);
 
   let minDistance = Infinity;
   let index = 0;

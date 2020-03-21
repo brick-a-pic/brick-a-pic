@@ -123,7 +123,15 @@ export const STD_LEGO_COLORS = [
 ];
 
 export const closestMatch = (rgb, colorOptions) => {
+<<<<<<< HEAD
   const COLORS = colorOptions.map(colorIndex => LEGO_COLORS[colorIndex]);
+=======
+  // console.log(colorOptions);
+  const COLORS = colorOptions.map(colorIndex => LEGO_COLORS[colorIndex]);
+
+  // console.log(COLORS);
+  // console.log(COLORS.length);
+>>>>>>> 577214a7dafb78a262adc18499480c89d9aceb49
 
   let minDistance = Infinity;
   let index = 0;

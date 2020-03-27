@@ -134,4 +134,9 @@ export const closestMatch = (rgb) => {
   return LEGO_COLORS[index];
 };
 
-export const colorMatch = data => data.map(row => row.map(closestMatch));
+export const colorMatch = data => data.map(row => (
+  row.map(brick => ({
+    ...brick,
+    color: closestMatch(brick.color),
+  }))
+));

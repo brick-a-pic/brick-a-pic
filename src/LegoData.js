@@ -16,6 +16,13 @@ export default class LegoData {
   constructor({ height, width, data }) {
     this.height = height;
     this.width = width;
-    this.data = chunk(chunk(data, 4), width);
+    const chunkedColors = chunk(chunk(data, 4), width);
+    this.data = chunkedColors.map(row => (
+      row.map((color, x) => ({
+        color,
+        x,
+        width: 1,
+      }))
+    ));
   }
 }

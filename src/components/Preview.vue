@@ -11,13 +11,13 @@
           <g v-for="(row, y) in imageData.data" :key="y">
             <rect
               class="pixel"
-              v-for="(color, x) in row"
-              :key="x"
-              width="1"
+              v-for="block in row"
+              :key="block.x"
+              :width="block.width"
               height="1"
-              :x="x"
+              :x="block.x"
               :y="y"
-              :fill="getColor(color)"
+              :fill="getColor(block.color)"
             />
             <text
               :x="-0.2"
@@ -31,14 +31,14 @@
           </g>
 
           <text
-            v-for="(row, x) in imageData.data[0]"
+            v-for="x in imageData.width"
             :key="`row${x}`"
-            :x="x + 0.5"
+            :x="x - 0.5"
             :y="-0.2"
             class="small"
             text-anchor="middle"
           >
-            {{x + 1}}
+            {{x}}
           </text>
         </g>
         <defs>

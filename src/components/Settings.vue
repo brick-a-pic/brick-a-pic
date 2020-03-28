@@ -43,20 +43,18 @@
               @input="onHeightChange"
             >
               <template v-slot:append>
-                <v-col>
-                  <v-text-field
-                    label="Height"
-                    id="heightSetting"
-                    :value="imageHeight"
-                    @change="onHeightChange"
-                    :rules="[rules.positive]"
-                    suffix="blocks"
-                    type="number"
-                    min=1
-                    max=100
-                    style="width: 90px"
-                  ></v-text-field>
-                </v-col>
+                <v-text-field
+                  label="Height"
+                  id="heightSetting"
+                  :value="imageHeight"
+                  @change="onHeightChange"
+                  :rules="[rules.positive]"
+                  suffix="blocks"
+                  type="number"
+                  min=1
+                  max=100
+                  style="width: 90px"
+                ></v-text-field>
               </template>
             </v-slider>
             <v-switch

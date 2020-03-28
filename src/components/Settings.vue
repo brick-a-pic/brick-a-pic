@@ -1,5 +1,5 @@
 <template>
-  <v-card max-width="20em" max-height="100%" style="overflow: auto;">
+  <v-card max-width="30em" max-height="100%" style="overflow: hidden;">
     <v-card-title>Options</v-card-title>
     <v-card-text>
       <OpenImage @change="onImageOpen"
@@ -13,38 +13,58 @@
       <v-container fluid>
         <v-row>
           <v-col>
-            <v-text-field
-              label="Width"
-              id="widthSetting"
-              type="number"
+            <v-slider
+              :max="100"
+              :min="1"
               :value="imageWidth"
               @change="onWidthChange"
-              :rules="[rules.positive]"
-              suffix="blocks"
-              min=1
-              max=100
-            ></v-text-field>
-          </v-col>
-          <v-col>
-            <v-text-field
-              label="Height"
-              id="heightSetting"
+              @input="onWidthChange"
+            >
+              <template v-slot:append>
+                <v-text-field
+                  label="Width"
+                  id="widthSetting"
+                  type="number"
+                  :value="imageWidth"
+                  :rules="[rules.positive]"
+                  @change="onWidthChange"
+                  suffix="blocks"
+                  min=1
+                  max=100
+                  style="width: 90px"
+                ></v-text-field>
+              </template>
+            </v-slider>
+            <v-slider
+              :max="100"
+              :min="1"
               :value="imageHeight"
               @change="onHeightChange"
-              :rules="[rules.positive]"
-              suffix="blocks"
-              type="number"
-              min=1
-              max=100
-            ></v-text-field>
+              @input="onHeightChange"
+            >
+              <template v-slot:append>
+                <v-text-field
+                  label="Height"
+                  id="heightSetting"
+                  :value="imageHeight"
+                  @change="onHeightChange"
+                  :rules="[rules.positive]"
+                  suffix="blocks"
+                  type="number"
+                  min=1
+                  max=100
+                  style="width: 90px"
+                ></v-text-field>
+              </template>
+            </v-slider>
+            <v-switch
+              v-model="preserveRatio"
+              label="Preserve aspect ratio"
+            ></v-switch>
           </v-col>
         </v-row>
         <v-row no-gutters>
           <v-col>
-          <v-switch
-            v-model="preserveRatio"
-            label="Preserve aspect ratio"
-          ></v-switch>
           </v-col>
         </v-row>
       </v-container>

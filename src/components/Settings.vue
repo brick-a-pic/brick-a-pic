@@ -1,5 +1,5 @@
 <template>
-  <v-card max-width="30em" max-height="100%" style="overflow: hidden;">
+  <v-card max-width="30em" max-height="100%" style="overflow: auto;">
     <v-card-title>Options</v-card-title>
     <v-card-text>
       <OpenImage @change="onImageOpen"

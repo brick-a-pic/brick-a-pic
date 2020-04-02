@@ -88,6 +88,7 @@ export default {
     imageUrl: '',
     imageHeight: 32,
     imageWidth: 32,
+    imageRatio: 1,
     minEdgeLength: 32,
     minWidth: 1,
     maxWidth: 100,
@@ -105,17 +106,18 @@ export default {
       const tmpImg = new Image();
       // const self = this;
       tmpImg.onload = () => {
-        const aspectRatio = tmpImg.height / tmpImg.width;
+        const aspectRatio = tmpImg.width / tmpImg.height;
         if (tmpImg.height > tmpImg.width) {
           this.imageWidth = this.minEdgeLength;
-          this.imageHeight = Math.floor(this.minEdgeLength * aspectRatio);
+          this.imageHeight = Math.floor(this.minEdgeLength / aspectRatio);
         } else if (tmpImg.height < tmpImg.width) {
           this.imageHeight = this.minEdgeLength;
-          this.imageWidth = Math.floor(this.minEdgeLength / aspectRatio);
+          this.imageWidth = Math.floor(this.minEdgeLength * aspectRatio);
         } else {
           this.imageWidth = this.minEdgeLength;
           this.imageHeight = this.minEdgeLength;
         }
+        this.imageRatio = aspectRatio;
         this.imageUrl = data;
       };
       tmpImg.src = data;
@@ -131,7 +133,9 @@ export default {
       if (newHeight < 1) return; // TODO: tie this to the rules parameter
 
       if (this.preserveRatio) {
-        this.imageWidth = Math.round(this.imageWidth * newHeight / this.imageHeight);
+        this.imageWidth = Math.round(newHeight * this.imageRatio);
+      } else {
+        this.imageRatio = this.imageWidth / newHeight;
       }
       this.imageHeight = newHeight;
     },
@@ -139,7 +143,9 @@ export default {
       if (newWidth < 1) return; // TODO: tie this to the rules parameter
 
       if (this.preserveRatio) {
-        this.imageHeight = Math.round(this.imageHeight * newWidth / this.imageWidth);
+        this.imageHeight = Math.round(newWidth / this.imageRatio);
+      } else {
+        this.imageRatio = newWidth / this.imageHeight;
       }
       this.imageWidth = newWidth;
     },

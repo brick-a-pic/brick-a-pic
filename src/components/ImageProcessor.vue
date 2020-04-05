@@ -10,7 +10,7 @@ import LegoData from '@/LegoData';
 
 export default {
   name: 'ImageProcessor',
-  props: ['imageUrl', 'imageWidth', 'imageHeight', 'colors', 'checked', 'changed'],
+  props: ['imageUrl', 'imageWidth', 'imageHeight', 'colors'],
   methods: {
     sampleImage() {
       // single method to reload image, so we can reload the image
@@ -29,10 +29,9 @@ export default {
         const pixelData = ctx.getImageData(0, 0, width, height);
 
         const legoData = new LegoData(pixelData);
-        // Adjust each pixel to the closest LEGO color
 
-        // legoData.data = colorMatch(legoData.data, self.colors, self.checked, self.changed);
-        legoData.data = colorMatch(legoData.data, self.colors, self.checked);
+        // Adjust each pixel to the closest LEGO color
+        legoData.data = colorMatch(legoData.data, self.colors);
 
         self.$emit('imageSampled', legoData);
       };

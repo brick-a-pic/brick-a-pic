@@ -16,7 +16,6 @@
     "register-service-worker": "^1.6.2",
     "roboto-fontface": "*",
     "vue": "^2.6.10",
-    "vue-swatches": "^1.0.4",
     "vuetify": "^2.1.0"
   },
   "devDependencies": {

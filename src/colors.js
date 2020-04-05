@@ -114,24 +114,40 @@ export const LEGO_COLORS = [
 ];
 
 export const STD_LEGO_COLORS = [
+  [163, 162, 164], // medium stone grey
   [242, 243, 242], // white
-  [196, 40, 27], // bright red
-  [13, 105, 171], // bright blue
-  [245, 205, 47], // bright yellow
+  [99, 95, 97], // dark stone grey
   [27, 42, 52], // black
+  [215, 197, 153], // brick yellow
+  [105, 64, 39], // reddish brown
+  [196, 40, 27], // bright red
+  [245, 205, 47], // bright yellow
+  [13, 105, 171], // bright blue
+  [218, 133, 64], // bright orange
   [40, 127, 70], // dark green
+  [123, 46, 47], // dark red
+  [164, 189, 70], // bright yellowish green
+  [232, 171, 45], // flame yellowish orange
+  [196, 112, 160], // medium lavender
+  [149, 138, 115], // sand yellow
+  [113, 197, 232], // sand blue
 ];
 
-export const closestMatch = (rgb, colorOptions) => {
-<<<<<<< HEAD
-  const COLORS = colorOptions.map(colorIndex => LEGO_COLORS[colorIndex]);
-=======
+// export const closestMatch = (rgb, colorOptions, checked, changed) => {
+export const closestMatch = (rgb, colorOptions, checked) => {
   // console.log(colorOptions);
-  const COLORS = colorOptions.map(colorIndex => LEGO_COLORS[colorIndex]);
+  // console.log(changed);
+  // if (changed) {
+  //   if (!checked) {
+  //     for (let i = 0; i < colorOptions.length; i += 1) {
+  //       const color = STD_LEGO_COLORS[i];
 
-  // console.log(COLORS);
-  // console.log(COLORS.length);
->>>>>>> 577214a7dafb78a262adc18499480c89d9aceb49
+  //     }
+  //   }
+  // }
+  const COLORS = checked
+    ? colorOptions.map(colorIndex => STD_LEGO_COLORS[colorIndex])
+    : colorOptions.map(colorIndex => LEGO_COLORS[colorIndex]);
 
   let minDistance = Infinity;
   let index = 0;
@@ -153,6 +169,12 @@ export const closestMatch = (rgb, colorOptions) => {
   return COLORS[index];
 };
 
-export const colorMatch = (data, colorOptions) => data.map(
-  row => row.map(pixel => closestMatch(pixel, colorOptions)),
+/*
+export const colorMatch = (data, colorOptions, checked, changed) => data.map(
+  row => row.map(pixel => closestMatch(pixel, colorOptions, checked, changed)),
+);
+*/
+
+export const colorMatch = (data, colorOptions, checked) => data.map(
+  row => row.map(pixel => closestMatch(pixel, colorOptions, checked)),
 );

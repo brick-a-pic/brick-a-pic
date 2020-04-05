@@ -9,6 +9,8 @@
         :image-height="imageHeight"
         :image-url="imageUrl"
         :colors="colors"
+        :checked="checked"
+        :changed="changed"
         @imageSampled="onImageSampled"/>
       <v-layout row wrap>
         <v-flex xs3 style="margin: 24px;">
@@ -32,7 +34,7 @@
           ></v-text-field>
         </v-flex>
       </v-layout>
-      <ColorPicker v-model="colors"/>
+      <ColorPicker v-model="colors" @checked="getColorOption"/>
     </v-card-text>
   </v-card>
 </template>
@@ -59,7 +61,10 @@ export default {
     maxWidth: 100,
     minHeight: 1,
     maxHeight: 100,
-    colors: [0, 1, 2, 3],
+    colors: [],
+    checked: false,
+    prev: false,
+    changed: false,
   }),
   methods: {
     onImageOpen(data) {
@@ -86,6 +91,21 @@ export default {
     onImageSampled(imageData) {
       this.imageData = imageData;
       this.$emit('imageLoaded', imageData);
+    },
+    ImageDelete() {
+      // this.$emit('imageLoaded', );
+    },
+    getColorSelected(colors) {
+      this.colors = colors;
+    },
+    getColorOption(checked) {
+      this.checked = checked;
+      if (this.prev !== checked) {
+        this.prev = checked;
+        this.changed = true;
+      } else {
+        this.changed = false;
+      }
     },
   },
 };

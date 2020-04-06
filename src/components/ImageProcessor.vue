@@ -10,7 +10,7 @@ import LegoData from '@/LegoData';
 
 export default {
   name: 'ImageProcessor',
-  props: ['imageUrl', 'imageWidth', 'imageHeight'],
+  props: ['imageUrl', 'imageWidth', 'imageHeight', 'colors'],
   methods: {
     sampleImage() {
       // single method to reload image, so we can reload the image
@@ -27,10 +27,11 @@ export default {
         const height = self.imageHeight;
         ctx.drawImage(img, 0, 0, width, height);
         const pixelData = ctx.getImageData(0, 0, width, height);
-
+        console.log(pixelData);
         const legoData = new LegoData(pixelData);
+        console.log(legoData);
         // Adjust each pixel to the closest LEGO color
-        legoData.data = colorMatch(legoData.data);
+        legoData.data = colorMatch(legoData.data, self.colors);
 
         self.$emit('imageSampled', legoData);
       };
@@ -45,6 +46,9 @@ export default {
       this.sampleImage();
     },
     imageHeight() {
+      this.sampleImage();
+    },
+    colors() {
       this.sampleImage();
     },
   },

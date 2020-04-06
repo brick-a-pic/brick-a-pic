@@ -9,6 +9,7 @@
         :image-width="imageWidth"
         :image-height="imageHeight"
         :image-url="imageUrl"
+        :colors="colors"
         @imageSampled="onImageSampled"/>
       <v-container fluid>
         <v-row>
@@ -68,6 +69,7 @@
           </v-col>
         </v-row>
       </v-container>
+      <ColorPicker v-model="colors"/>
     </v-card-text>
   </v-card>
 </template>
@@ -75,12 +77,14 @@
 <script>
 import OpenImage from './OpenImage.vue';
 import ImageProcessor from './ImageProcessor.vue';
+import ColorPicker from './ColorPicker.vue';
 
 export default {
   name: 'Settings',
   components: {
     OpenImage,
     ImageProcessor,
+    ColorPicker,
   },
   data: () => ({
     imageCheck: 0,
@@ -94,6 +98,7 @@ export default {
     maxWidth: 100,
     minHeight: 1,
     maxHeight: 100,
+    colors: [],
     preserveRatio: true,
     rules: {
       positive: value => value > 0 || 'Must be positive',
@@ -148,6 +153,9 @@ export default {
         this.imageRatio = newWidth / this.imageHeight;
       }
       this.imageWidth = newWidth;
+    },
+    getColorSelected(colors) {
+      this.colors = colors;
     },
   },
 };

@@ -42,6 +42,7 @@ export default {
   methods: {
     passImage(data) {
       this.imageData = data;
+      console.log(this.imageData);
     },
   },
 };

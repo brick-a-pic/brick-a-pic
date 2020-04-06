@@ -27,9 +27,9 @@ export default {
         const height = self.imageHeight;
         ctx.drawImage(img, 0, 0, width, height);
         const pixelData = ctx.getImageData(0, 0, width, height);
-        console.log(pixelData);
+
         const legoData = new LegoData(pixelData);
-        console.log(legoData);
+
         // Adjust each pixel to the closest LEGO color
         legoData.data = colorMatch(legoData.data, self.colors);
 

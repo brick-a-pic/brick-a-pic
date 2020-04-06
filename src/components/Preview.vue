@@ -70,7 +70,6 @@ export default {
 
   methods: {
     getColor([r, g, b, a]) {
-      console.log([r, g, b, a]);
       return `rgba(${r}, ${g}, ${b}, ${(a || 256) / 256})`;
     },
   },

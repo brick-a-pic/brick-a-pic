@@ -28,6 +28,7 @@ The code is organized into Vue components, each of which serves a distinct purpo
   * [Settings.vue](./src/components/Settings.vue)
     * [OpenImage.vue](./src/components/OpenImage.vue)
     * [ImageProcessor.vue](./src/components/ImageProcessor.vue)
+    * [ColorPicker.vue](./src/components/ColorPicker.vue)
 
 ### Pull Requests
 

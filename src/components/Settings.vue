@@ -98,7 +98,7 @@ export default {
     maxWidth: 100,
     minHeight: 1,
     maxHeight: 100,
-    colors: [],
+    colors: Array(17).fill().map((_, i) => i),
     preserveRatio: true,
     rules: {
       positive: value => value > 0 || 'Must be positive',
@@ -153,9 +153,6 @@ export default {
         this.imageRatio = newWidth / this.imageHeight;
       }
       this.imageWidth = newWidth;
-    },
-    getColorSelected(colors) {
-      this.colors = colors;
     },
   },
 };

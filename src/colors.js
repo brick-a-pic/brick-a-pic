@@ -46,6 +46,7 @@ export const closestMatch = (rgb, colorOptions) => {
     const r1 = COLORS[i][0];
     const g1 = COLORS[i][1];
     const b1 = COLORS[i][2];
+
     const d = ((r1 - r) ** 2) + ((g1 - g) ** 2) + ((b1 - b) ** 2);
 
     if (d < minDistance) {
@@ -56,6 +57,9 @@ export const closestMatch = (rgb, colorOptions) => {
   return COLORS[index];
 };
 
-export const colorMatch = (data, colorOptions) => data.map(
-  row => row.map(pixel => closestMatch(pixel, colorOptions)),
-);
+export const colorMatch = (data, colorOptions) => data.map(row => (
+  row.map(pixel => ({
+    ...pixel,
+    color: closestMatch(pixel.color, colorOptions),
+  }))
+));

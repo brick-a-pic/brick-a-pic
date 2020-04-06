@@ -154,9 +154,6 @@ export default {
       }
       this.imageWidth = newWidth;
     },
-    getColorSelected(colors) {
-      this.colors = colors;
-    },
   },
 };
 

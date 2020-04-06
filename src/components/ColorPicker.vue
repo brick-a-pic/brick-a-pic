@@ -14,7 +14,7 @@
             justify="start"
           >
             <v-col
-              v-for="(col, colorIndex) in getColorOptions()"
+              v-for="(col, colorIndex) in colorOptions"
               :key="colorIndex"
               cols="auto"
             >
@@ -53,11 +53,9 @@ export default {
     value: Array,
   },
 
-  methods: {
-    getColorOptions() {
-      return colorPaletteStd;
-    },
-  },
+  data: () => ({
+    colorOptions: colorPaletteStd,
+  }),
 };
 </script>
 

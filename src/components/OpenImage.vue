@@ -65,6 +65,10 @@ export default {
   },
 
   methods: {
+    /**
+     * When a file is uploaded, convert it to a URL and emit it up
+     * @param {?File} file The file that was uploaded
+     */
     onChange(file) {
       if (!file) return;
       // TODO: return if validation fails

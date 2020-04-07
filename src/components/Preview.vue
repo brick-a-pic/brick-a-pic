@@ -69,6 +69,11 @@ export default {
   }),
 
   methods: {
+    /**
+     * Converts a color represented as an array to a CSS-friendly string
+     * @param {number[]} param0 The color as an `[r, g, b, a]` array (`a` is optional)
+     * @returns {string} The color as a `rgba(r, g, b, a)` string
+     */
     getColor([r, g, b, a]) {
       return `rgba(${r}, ${g}, ${b}, ${(a || 256) / 256})`;
     },

@@ -131,9 +131,6 @@ export default {
       this.imageData = imageData;
       this.$emit('imageLoaded', imageData);
     },
-    ImageDelete() {
-      // this.$emit('imageLoaded', );
-    },
     onHeightChange(newHeight) {
       if (newHeight < 1) return; // TODO: tie this to the rules parameter
 

@@ -12,6 +12,10 @@ export default {
   name: 'ImageProcessor',
   props: ['imageUrl', 'imageWidth', 'imageHeight', 'colors'],
   methods: {
+    /**
+     * Draw the image on a Canvas at the proper size, adjust to LEGO colors,
+     * and emit the LegoData up
+     */
     sampleImage() {
       // single method to reload image, so we can reload the image
       // every time the URL *or* the dimensions change.

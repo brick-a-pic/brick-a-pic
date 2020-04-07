@@ -31,6 +31,12 @@ export const STD_LEGO_COLORS = [
   [39, 70, 44], // earth green
 ];
 
+/**
+ * Returns the closest color in `colorOptions` to the given `rgb` color
+ * @param {number[]} rgb The `[r, g, b]` values of the color to be matched
+ * @param {number[]} colorOptions The selected color indexes, corresponding to `STD_LEGO_COLORS`
+ * @returns {number[]}
+ */
 export const closestMatch = (rgb, colorOptions) => {
   const COLORS = colorOptions.map(colorIndex => STD_LEGO_COLORS[colorIndex]);
 
@@ -57,6 +63,12 @@ export const closestMatch = (rgb, colorOptions) => {
   return COLORS[index];
 };
 
+/**
+ * Replaces each color in `data` with the closest color specified in `colorOptions`
+ * @param {any[][]} data The `LegoData` pixel data
+ * @param {number[]} colorOptions The selected color indexes, corresponding to `STD_LEGO_COLORS`
+ * @returns {any[][]}
+ */
 export const colorMatch = (data, colorOptions) => data.map(row => (
   row.map(pixel => ({
     ...pixel,

@@ -35,7 +35,8 @@ npm run test:unit
 npm run lint
 ```
 
-## Docker Instructions
+
+## Deployment instructions using Docker
 ### Build a docker image from the Dockerfile
 ```
 docker build -t image_name .
@@ -43,4 +44,4 @@ docker build -t image_name .
 
 ### Create a container from the image
 ```
-docker run -p 8080:80 --rm --name container_name simple_nginx
+docker run -p 8080:80 --rm --name container_name image_name

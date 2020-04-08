@@ -36,7 +36,7 @@ npm run lint
 ```
 
 
-## Deployment instructions using Docker
+# Deployment instructions using Docker
 ### Build a docker image from the Dockerfile
 ```
 docker build -t image_name .

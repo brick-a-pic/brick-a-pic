@@ -20,7 +20,7 @@
         fluid
         class="full-height"
       >
-        <Settings @imageLoaded="passImage" v-if="showDrawer"></Settings>
+        <Settings @imageLoaded="passImage" v-show="showDrawer"></Settings>
       </v-container>
     </v-content>
   </v-app>

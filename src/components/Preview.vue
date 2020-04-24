@@ -1,13 +1,18 @@
 <template>
   <div class="background-wrapper" id="background">
     <div class="draggable" ref="panzoom">
+      <!-- eslint-disable -->
       <svg
+        xmlns="w3.org/2000/svg" 
+        xmlns:xlink="w3.org/1999/xlink" 
+        id = "test"
         shape-rendering="crispEdges"
         v-if="imageData"
         class="preview-svg"
         :viewBox="`-1 -1 ${imageData.width + 1} ${imageData.height + 1}`"
       >
-        <g>
+
+ <g>
           <g v-for="(row, y) in imageData.data" :key="y">
             <rect
               class="pixel"
@@ -57,6 +62,7 @@
 </template>
 
 <script>
+
 import panzoom from 'panzoom';
 
 export default {
@@ -78,7 +84,18 @@ export default {
       return `rgba(${r}, ${g}, ${b}, ${(a || 256) / 256})`;
     },
   },
+  downloadSVG(evt) {
+    // document.querySelector(".link-download").addEventListener("click", (evt) => {
+    const svgContent = document.getElementById('test').outerHTML;
+    const blob = new Blob([svgContent], { type: 'image/svg+xml' });
+    const url = window.URL.createObjectURL(blob);
+    const link = evt.target;
 
+    link.target = '_blank';
+    link.download = 'Illustration1.svg';
+    link.href = url;
+    // });
+  },
   mounted() {
     this.panzoomInstance = panzoom(this.$refs.panzoom, {
       bounds: true,

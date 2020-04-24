@@ -12,6 +12,7 @@
 
       <v-btn text href="/">About</v-btn>
       <v-btn text href="https://github.com/brick-a-pic/brick-a-pic" target="_blank">Source</v-btn>
+      <a text @click="downloadSVG" target="_blank">Download</a>
     </v-app-bar>
 
     <v-content class="full-height">
@@ -40,6 +41,18 @@ export default {
     imageData: null,
   }),
   methods: {
+    downloadSVG(evt) {
+    // document.querySelector(".link-download").addEventListener("click", (evt) => {
+      const svgContent = document.getElementById('test').outerHTML;
+      const blob = new Blob([svgContent], { type: 'image/svg+xml' });
+      const url = window.URL.createObjectURL(blob);
+      const link = evt.target;
+
+      link.target = '_blank';
+      link.download = 'Illustration1.svg';
+      link.href = url;
+    // });
+    },
     passImage(data) {
       this.imageData = data;
     },

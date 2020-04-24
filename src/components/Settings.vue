@@ -105,6 +105,18 @@ export default {
     },
   }),
   methods: {
+    downloadSVG(evt) {
+    // document.querySelector(".link-download").addEventListener("click", (evt) => {
+      const svgContent = document.getElementById('test').outerHTML;
+      const blob = new Blob([svgContent], { type: 'image/svg+xml' });
+      const url = window.URL.createObjectURL(blob);
+      const link = evt.target;
+
+      link.target = '_blank';
+      link.download = 'Illustration1.svg';
+      link.href = url;
+    // });
+    },
     onImageOpen(data) {
       // we briefly unpack the image here from its url to automatically
       // determine what the proportions of the transformed image should be

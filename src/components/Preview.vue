@@ -11,16 +11,6 @@
         class="preview-svg"
         :viewBox="`-1 -1 ${imageData.width + 1} ${imageData.height + 1}`"
       >
-<div>
-  <b-button>I am a Button</b-button>
-  <b-button href="#">I am a Link</b-button>
-</div>
-
-    IMAGE
-      <img/>
-
-    CANVAS
-      <canvas></canvas>
 
  <g>
           <g v-for="(row, y) in imageData.data" :key="y">

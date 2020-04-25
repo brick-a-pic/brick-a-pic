@@ -19,6 +19,16 @@
               :y="y"
               :fill="getColor(block.color)"
             />
+            <circle
+              v-for="block in row"
+              :key="block.x"
+              :cx="block.x + 0.5"
+              :cy="y + 0.5"
+              :r="0.35"
+              :fill="circleColor(block.color)"
+              stroke="grey"
+              stroke-width="0.02"
+            />
             <text
               :x="-0.2"
               :y="y + 0.5"
@@ -76,6 +86,9 @@ export default {
      */
     getColor([r, g, b, a]) {
       return `rgba(${r}, ${g}, ${b}, ${(a || 256) / 256})`;
+    },
+    circleColor([r, g, b, a]) {
+      return `rgba(${r + 40}, ${g + 40}, ${b + 40}, ${(a || 256) / 256})`;
     },
   },
 

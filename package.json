@@ -15,7 +15,7 @@
     "jslint": "^0.12.1",
     "register-service-worker": "^1.6.2",
     "roboto-fontface": "*",
-    "vue": "^2.6.10",
+    "vue": "^3.0.0",
     "vuetify": "^2.1.0"
   },
   "devDependencies": {
